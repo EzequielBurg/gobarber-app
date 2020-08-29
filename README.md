@@ -42,7 +42,7 @@ After this, run yarn dev:server and test the routes by Insomnia or Postman.
 **RN**
 
 - O usuário não pode alterar seu email para um email já utilizado;
-- Para atualizar sua senha, o usuário deve informar dua senha antiga;
+- Para atualizar sua senha, o usuário deve informar sua senha antiga;
 - Para atualizar sua senha, o usuário deve confirmar a nova senha;
 
 # Painel do prestador (aplicação desktop)
