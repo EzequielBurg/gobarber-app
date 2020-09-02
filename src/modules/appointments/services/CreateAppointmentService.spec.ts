@@ -14,7 +14,6 @@ describe('CreateAppointment', () => {
   });
 
   it('should be able to create a new appointment', async () => {
-    // expect(1 + 2).toBe(3);
     const appointment = await createAppointment.execute({
       date: new Date(),
       provider_id: '1615',
