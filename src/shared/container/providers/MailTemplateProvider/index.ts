@@ -8,6 +8,6 @@ const providers = {
 };
 
 container.registerSingleton<IMailTemplateProvider>(
-  'MailProvider',
+  'MailTemplateProvider',
   providers.handlebars,
 );
