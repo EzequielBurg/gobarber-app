@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import User from '@modules/users/infra/typeorm/entities/User';
@@ -18,8 +19,12 @@ class ListProvidersService {
   ) {}
 
   public async execute({ user_id }: IRequest): Promise<User[]> {
+    const today = new Date();
+
     let users = await this.cacheProvider.recover<User[]>(
-      `providers-list:${user_id}`,
+      `providers-list:${user_id}:${today.getFullYear()}-${
+        today.getMonth() + 1
+      }-${today.getDate()}`,
     );
 
     if (!users) {
@@ -27,7 +32,12 @@ class ListProvidersService {
         except_user_id: user_id,
       });
 
-      await this.cacheProvider.save(`providers-list:${user_id}`, users);
+      await this.cacheProvider.save(
+        `providers-list:${user_id}:${today.getFullYear()}-${
+          today.getMonth() + 1
+        }-${today.getDate()}`,
+        classToClass(users),
+      );
     }
 
     return users;
